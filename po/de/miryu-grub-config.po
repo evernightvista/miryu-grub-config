@@ -1,0 +1,232 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: miryu-grub-config 1.0.0\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# GUI messages
+msgid "Miryu GRUB2 Boot Config"
+msgstr "Miryu GRUB2-Starter-Einstellungen"
+
+msgid "Tune the GRUB2 boot menu, kernel parameters, and saved default entry."
+msgstr "GRUB2-Startmenü, Kernel-Parameter und den gespeicherten Standardeintrag anpassen."
+
+msgid "Boot Menu"
+msgstr "Startmenü"
+
+msgid "Show boot menu"
+msgstr "Startmenü anzeigen"
+
+msgid "Show the GRUB menu before starting the default system."
+msgstr "Das GRUB-Menü anzeigen, bevor das Standardsystem gestartet wird."
+
+msgid "Delay before booting"
+msgstr "Verzögerung vor dem Start"
+
+msgid " seconds"
+msgstr " Sekunden"
+
+msgid "wait indefinitely"
+msgstr "unbegrenzt warten"
+
+msgid "Use -1 to wait until a menu entry is selected."
+msgstr "-1 verwenden, um bis zur Auswahl eines Menüeintrags zu warten."
+
+msgid "Remember last selected entry as the default"
+msgstr "Zuletzt ausgewählten Eintrag als Standard merken"
+
+msgid "Kernel Parameters"
+msgstr "Kernel-Parameter"
+
+msgid "Current kernel command line"
+msgstr "Aktuelle Kernel-Befehlszeile"
+
+msgid "Custom parameters written by this tool"
+msgstr "Von diesem Werkzeug geschriebene benutzerdefinierte Parameter"
+
+msgid "Remove"
+msgstr "Entfernen"
+
+msgid "Edit"
+msgstr "Bearbeiten"
+
+msgid "Up"
+msgstr "Nach oben"
+
+msgid "Down"
+msgstr "Nach unten"
+
+msgid "New parameter"
+msgstr "Neuer Parameter"
+
+msgid "Example: nomodeset"
+msgstr "Beispiel: nomodeset"
+
+msgid "Add"
+msgstr "Hinzufügen"
+
+msgid "Saving requires administrator authentication through polkit."
+msgstr "Zum Speichern ist eine Administrator-Authentifizierung über polkit erforderlich."
+
+msgid "Save GRUB2 Settings"
+msgstr "GRUB2-Einstellungen speichern"
+
+msgid "Reboot"
+msgstr "Neu starten"
+
+msgid "Load Failed"
+msgstr "Laden fehlgeschlagen"
+
+msgid "Could not load the GRUB configuration."
+msgstr "Die GRUB-Konfiguration konnte nicht geladen werden."
+
+msgid "Empty Parameter"
+msgstr "Leerer Parameter"
+
+msgid "Enter one kernel parameter first."
+msgstr "Bitte zuerst einen Kernel-Parameter eingeben."
+
+msgid "Invalid Parameter"
+msgstr "Ungültiger Parameter"
+
+msgid "Add one parameter at a time. Spaces are not allowed."
+msgstr "Bitte jeweils nur einen Parameter hinzufügen. Leerzeichen sind nicht erlaubt."
+
+msgid "Use only letters, numbers, and these characters: _ . / : = , + @ % -"
+msgstr "Nur Buchstaben, Zahlen und folgende Zeichen verwenden: _ . / : = , + @ % -"
+
+msgid "Duplicate Parameter"
+msgstr "Doppelter Parameter"
+
+msgid "The parameter \xe2\x80\x9c%1\xe2\x80\x9d already exists."
+msgstr "Der Parameter \xe2\x80\x9c%1\xe2\x80\x9d existiert bereits."
+
+msgid "Edit Parameter"
+msgstr "Parameter bearbeiten"
+
+msgid "Parameter"
+msgstr "Parameter"
+
+msgid "Save Failed"
+msgstr "Speichern fehlgeschlagen"
+
+msgid "Could not create a temporary configuration file."
+msgstr "Es konnte keine temporäre Konfigurationsdatei erstellt werden."
+
+msgid "Helper Not Found"
+msgstr "Hilfsprogramm nicht gefunden"
+
+msgid ""
+"The privileged helper was not found at:\n"
+"%1\n"
+"\n"
+"Install the project before saving GRUB2 settings."
+msgstr ""
+"Das privilegierte Hilfsprogramm wurde nicht gefunden unter:\n"
+"%1\n"
+"\n"
+"Installieren Sie das Projekt, bevor Sie GRUB2-Einstellungen speichern."
+
+msgid "Waiting for administrator authentication\xe2\x80\xa6"
+msgstr "Warten auf Administrator-Authentifizierung\xe2\x80\xa6"
+
+msgid "Timed out while waiting for polkit authentication."
+msgstr "Zeitüberschreitung beim Warten auf polkit-Authentifizierung."
+
+msgid "Save did not complete."
+msgstr "Speichern wurde nicht abgeschlossen."
+
+msgid ""
+"Could not save and regenerate GRUB2 configuration.\n"
+"\n"
+"%1"
+msgstr ""
+"GRUB2-Konfiguration konnte nicht gespeichert und regeneriert werden.\n"
+"\n"
+"%1"
+
+msgid "Save failed. No reboot has been requested."
+msgstr "Speichern fehlgeschlagen. Kein Neustart angefordert."
+
+msgid "GRUB2 settings saved. Reboot to use the new boot menu."
+msgstr "GRUB2-Einstellungen gespeichert. Zur Verwendung des neuen Startmenüs neu starten."
+
+msgid "Saved"
+msgstr "Gespeichert"
+
+msgid "GRUB2 settings were saved and grub2-mkconfig completed successfully."
+msgstr "GRUB2-Einstellungen wurden gespeichert und grub2-mkconfig wurde erfolgreich abgeschlossen."
+
+msgid "Confirm Reboot"
+msgstr "Neustart bestätigen"
+
+msgid ""
+"Reboot now?\n"
+"\n"
+"Unsaved changes will not be applied."
+msgstr ""
+"Jetzt neu starten?\n"
+"\n"
+"Nicht gespeicherte Änderungen werden nicht angewendet."
+
+# Helper messages
+msgid "Usage: miryu-grub-config-helper --apply <generated-config-file>"
+msgstr "Verwendung: miryu-grub-config-helper --apply <generierte-Konfigurationsdatei>"
+
+msgid "This helper must run as root through polkit."
+msgstr "Dieses Hilfsprogramm muss als Root über polkit ausgeführt werden."
+
+msgid "Could not read the generated configuration file."
+msgstr "Die generierte Konfigurationsdatei konnte nicht gelesen werden."
+
+msgid "The input file was not generated by Miryu GRUB2 Boot Config."
+msgstr "Die Eingabedatei wurde nicht von Miryu GRUB2 Boot Config generiert."
+
+msgid "GRUB_TIMEOUT must be between -1 and 3600."
+msgstr "GRUB_TIMEOUT muss zwischen -1 und 3600 liegen."
+
+msgid "Unsupported or unsafe configuration line: %1"
+msgstr "Nicht unterstützte oder unsichere Konfigurationszeile: %1"
+
+msgid "The configuration is incomplete."
+msgstr "Die Konfiguration ist unvollständig."
+
+msgid "Could not open %1 for writing."
+msgstr "%1 konnte nicht zum Schreiben geöffnet werden."
+
+msgid "Could not atomically replace %1."
+msgstr "%1 konnte nicht atomar ersetzt werden."
+
+msgid "Warning: could not remove the old drop-in file %1."
+msgstr "Warnung: Die alte Drop-in-Datei %1 konnte nicht entfernt werden."
+
+msgid "Could not apply new kernel parameters to BLS entries."
+msgstr "Neue Kernel-Parameter konnten nicht auf BLS-Einträge angewendet werden."
+
+msgid "Could not remove old kernel parameters from BLS entries."
+msgstr "Alte Kernel-Parameter konnten nicht aus BLS-Einträgen entfernt werden."
+
+msgid "grub2-mkconfig timed out."
+msgstr "Zeitüberschreitung bei grub2-mkconfig."
+
+msgid "grub2-mkconfig failed."
+msgstr "grub2-mkconfig fehlgeschlagen."
+
+msgid "GRUB2 configuration updated."
+msgstr "GRUB2-Konfiguration aktualisiert."
+
+# KCM (KDE System Settings module) messages
+msgid "Miryu GRUB2 Boot Config tunes the GRUB2 boot menu, kernel parameters, and the saved default entry. Use the button below to open the application."
+msgstr "Miryu GRUB2 Boot Config passt das GRUB2-Startmenü, die Kernel-Parameter und den gespeicherten Standardeintrag an. Verwenden Sie die Schaltfläche unten, um die Anwendung zu öffnen."
+
+msgid "Open Miryu GRUB2 Boot Config"
+msgstr "Miryu GRUB2 Boot Config öffnen"
+
+msgid "Miryu GRUB2 Boot Config has been launched."
+msgstr "Miryu GRUB2 Boot Config wurde gestartet."
+
+msgid "Could not launch Miryu GRUB2 Boot Config. Make sure it is installed."
+msgstr "Miryu GRUB2 Boot Config konnte nicht gestartet werden. Stellen Sie sicher, dass es installiert ist."

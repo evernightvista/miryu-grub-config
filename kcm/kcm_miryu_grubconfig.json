@@ -1,0 +1,31 @@
+{
+    "KPlugin": {
+        "Id": "kcm_miryu_grubconfig",
+        "Name": "Miryu GRUB2 Boot Config",
+        "Name[zh_CN]": "Miryu GRUB2启动器设置",
+        "Name[zh_TW]": "Miryu GRUB2 啟動器設定",
+        "Name[ja]": "Miryu GRUB2 起動設定",
+        "Name[de]": "Miryu GRUB2-Starter-Einstellungen",
+        "Name[ko]": "Miryu GRUB2 부팅 설정",
+        "Name[fr]": "Paramètres du lanceur GRUB2 Miryu",
+        "Description": "Open the Miryu GRUB2 Boot Config application",
+        "Description[zh_CN]": "打开 Miryu GRUB2启动器设置应用程序",
+        "Description[zh_TW]": "開啟 Miryu GRUB2 啟動器設定應用程式",
+        "Description[ja]": "Miryu GRUB2 起動設定を開く",
+        "Description[de]": "Miryu GRUB2-Starter-Einstellungen öffnen",
+        "Description[ko]": "Miryu GRUB2 부팅 설정 프로그램 열기",
+        "Description[fr]": "Ouvrir l'application Miryu GRUB2 Boot Config",
+        "Icon": "system-boot-manager",
+        "Authors": [
+            { "Name": "Evernight Vista Team", "Email": "13278297951@sina.cn" }
+        ],
+        "License": "GPL-3.0-or-later",
+        "Website": "https://github.com/evernightvista/miryu-grub-config",
+        "EnabledByDefault": true
+    },
+    "Categories": "Qt;KDE;",
+    "X-KDE-Keywords": "miryu,grub2,grub,boot,kernel",
+    "X-KDE-Keywords[zh_CN]": "miryu,grub2,grub,启动,内核,引导",
+    "X-KDE-System-Settings-Parent-Category": "system-administration",
+    "X-KDE-Weight": 60
+}

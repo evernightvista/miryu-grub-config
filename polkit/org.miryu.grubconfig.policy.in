@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<policyconfig>
+  <vendor>Evernight Vista Team</vendor>
+  <vendor_url>https://github.com/evernightvista</vendor_url>
+
+  <action id="@APP_ID@.save">
+    <description>Save GRUB2 settings</description>
+    <description xml:lang="zh_CN">保存 GRUB2 设置</description>
+    <description xml:lang="zh_TW">儲存 GRUB2 設定</description>
+    <description xml:lang="ja">GRUB2 設定を保存</description>
+    <description xml:lang="de">GRUB2-Einstellungen speichern</description>
+    <description xml:lang="ko">GRUB2 설정 저장</description>
+    <description xml:lang="fr">Enregistrer les paramètres GRUB2</description>
+    <message>Authentication is required to save GRUB2 settings and regenerate the bootloader configuration.</message>
+    <message xml:lang="zh_CN">保存 GRUB2 设置并重新生成引导加载器配置需要进行身份验证。</message>
+    <message xml:lang="zh_TW">儲存 GRUB2 設定並重新產生開機載入程式設定需要進行身分驗證。</message>
+    <message xml:lang="ja">GRUB2 設定を保存し、ブートローダー設定を再生成するには認証が必要です。</message>
+    <message xml:lang="de">Zum Speichern der GRUB2-Einstellungen und zum Neuerstellen der Bootloader-Konfiguration ist eine Authentifizierung erforderlich.</message>
+    <message xml:lang="ko">GRUB2 설정을 저장하고 부트로더 구성을 다시 생성하려면 인증이 필요합니다.</message>
+    <message xml:lang="fr">Une authentification est requise pour enregistrer les paramètres GRUB2 et régénérer la configuration du chargeur d’amorçage.</message>
+    <defaults>
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>auth_admin</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">@HELPER_INSTALL_PATH@</annotate>
+    <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
+  </action>
+</policyconfig>

@@ -1,0 +1,21 @@
+[Desktop Entry]
+Type=Application
+Name=Miryu GRUB2 Boot Config
+Name[zh_CN]=Miryu GRUB2启动器设置
+Name[zh_TW]=Miryu GRUB2 啟動器設定
+Name[ja]=Miryu GRUB2 起動設定
+Name[de]=Miryu GRUB2-Starter-Einstellungen
+Name[ko]=Miryu GRUB2 부팅 설정
+Name[fr]=Paramètres du lanceur GRUB2 Miryu
+Comment=Configure GRUB2 boot menu settings
+Comment[zh_CN]=配置 GRUB2 启动菜单设置
+Comment[zh_TW]=設定 GRUB2 開機選單
+Comment[ja]=GRUB2 ブートメニュー設定を構成
+Comment[de]=GRUB2-Startmenü-Einstellungen konfigurieren
+Comment[ko]=GRUB2 부팅 메뉴 설정 구성
+Comment[fr]=Configurer les paramètres du menu de démarrage GRUB2
+Exec=miryu-grub-config
+Icon=system-boot-manager
+Categories=Settings;System;
+Terminal=false
+NoDisplay=true
