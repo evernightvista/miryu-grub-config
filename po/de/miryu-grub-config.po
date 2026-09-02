@@ -68,8 +68,8 @@ msgstr "Beispiel: nomodeset"
 msgid "Add"
 msgstr "Hinzufügen"
 
-msgid "Saving requires administrator authentication through polkit."
-msgstr "Zum Speichern ist eine Administrator-Authentifizierung über polkit erforderlich."
+msgid "Saving requires administrator authentication."
+msgstr "Zum Speichern ist eine Administrator-Authentifizierung erforderlich."
 
 msgid "Save GRUB2 Settings"
 msgstr "GRUB2-Einstellungen speichern"

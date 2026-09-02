@@ -68,8 +68,8 @@ msgstr "例: nomodeset"
 msgid "Add"
 msgstr "追加"
 
-msgid "Saving requires administrator authentication through polkit."
-msgstr "保存には polkit による管理者認証が必要です。"
+msgid "Saving requires administrator authentication."
+msgstr "保存には管理者認証が必要です。"
 
 msgid "Save GRUB2 Settings"
 msgstr "GRUB2 設定を保存"

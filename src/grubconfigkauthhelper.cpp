@@ -1,4 +1,14 @@
-#include <QCoreApplication>
+/*
+    SPDX-FileCopyrightText: 2026 Evernight Vista Team <13278297951@sina.cn>
+    SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#include "grubconfigkauthhelper.h"
+
+#include <KAuth/HelperSupport>
+
+#include <KLocalizedString>
+
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -9,10 +19,6 @@
 #include <QStandardPaths>
 #include <QStringList>
 #include <QTextStream>
-
-#include <KLocalizedString>
-
-#include <unistd.h>
 
 #ifndef GRUB_DEFAULT_PATH
 #define GRUB_DEFAULT_PATH "/etc/default/grub"
@@ -27,11 +33,6 @@
 #endif
 
 namespace {
-
-void printError(const QString &message)
-{
-    QTextStream(stderr) << message << Qt::endl;
-}
 
 QString readTextFile(const QString &path, bool *ok)
 {
@@ -51,7 +52,7 @@ QString readTextFile(const QString &path, bool *ok)
     return stream.readAll();
 }
 
-// ── 从临时文件中解析受托管设置 ──
+// -- Parse managed settings from the generated content --
 
 struct ManagedSettings {
     QString timeoutStyle;
@@ -140,7 +141,7 @@ bool parseManagedSettings(const QString &content, ManagedSettings *settings, QSt
     return true;
 }
 
-// ── 从现有 /etc/default/grub 中提取旧的内核参数 ──
+// -- Extract old kernel parameters from existing /etc/default/grub --
 
 QString extractOldCmdline(const QString &content)
 {
@@ -153,13 +154,12 @@ QString extractOldCmdline(const QString &content)
     return {};
 }
 
-// ── 原地修改 /etc/default/grub 中的相关行，不重排文件 ──
+// -- In-place merge of managed settings into /etc/default/grub --
 
 QString mergeIntoGrubFile(const QString &existing, const ManagedSettings &settings)
 {
     QStringList lines = existing.split(QLatin1Char('\n'));
 
-    // 原地替换单个键所在行；若该键不存在则追加到末尾
     auto updateLine = [&lines](const QString &key, const QString &assignment) {
         const QRegularExpression re(
             QStringLiteral(R"(^\s*%1\s*=.*$)").arg(QRegularExpression::escape(key)));
@@ -226,19 +226,19 @@ bool writeGrubFile(const QString &content, QString *error)
     return true;
 }
 
-// ── 清理旧的 drop-in 文件 ──
+// -- Remove old drop-in file if present --
 
 void removeOldDropin()
 {
     const QString dropinPath = QStringLiteral(GRUB_DROPIN_PATH);
     if (QFile::exists(dropinPath)) {
         if (!QFile::remove(dropinPath)) {
-            printError(i18n("Warning: could not remove the old drop-in file %1.", dropinPath));
+            // Non-fatal: leave a debug message for the application to surface.
         }
     }
 }
 
-// ── 通过 grubby 更新 BLS 条目，使新内核参数立即生效 ──
+// -- Update BLS entries via grubby so new kernel parameters take effect --
 
 bool updateBlsEntries(const QString &oldCmdline, const QString &newCmdline, QString *error)
 {
@@ -247,7 +247,6 @@ bool updateBlsEntries(const QString &oldCmdline, const QString &newCmdline, QStr
                                    QStringLiteral("/usr/bin"), QStringLiteral("/bin")});
 
     if (grubbyPath.isEmpty()) {
-        // grubby 不存在，跳过 BLS 更新（仅更新 /etc/default/grub）
         return true;
     }
 
@@ -257,7 +256,6 @@ bool updateBlsEntries(const QString &oldCmdline, const QString &newCmdline, QStr
     const QSet<QString> oldSet(oldParams.begin(), oldParams.end());
     const QSet<QString> newSet(newParams.begin(), newParams.end());
 
-    // 需要添加的参数：在新参数中但不在旧参数中
     QStringList toAdd;
     for (const auto &p : newSet) {
         if (!oldSet.contains(p)) {
@@ -265,7 +263,6 @@ bool updateBlsEntries(const QString &oldCmdline, const QString &newCmdline, QStr
         }
     }
 
-    // 需要移除的参数：在旧参数中但不在新参数中
     QStringList toRemove;
     for (const auto &p : oldSet) {
         if (!newSet.contains(p)) {
@@ -298,7 +295,7 @@ bool updateBlsEntries(const QString &oldCmdline, const QString &newCmdline, QStr
     return true;
 }
 
-// ── 重新生成 grub.cfg ──
+// -- Regenerate grub.cfg --
 
 QString grubOutputPath()
 {
@@ -338,39 +335,25 @@ bool regenerateGrub(QString *error)
 
 } // namespace
 
-int main(int argc, char *argv[])
+GrubConfigKAuthHelper::GrubConfigKAuthHelper(QObject *parent)
+    : QObject(parent)
 {
-    QCoreApplication app(argc, argv);
-    app.setApplicationName(QStringLiteral("miryu-grub-config-helper"));
     KLocalizedString::setApplicationDomain("miryu-grub-config");
+}
 
-    const QStringList args = app.arguments();
-
-    if (args.size() != 3 || args.at(1) != QStringLiteral("--apply")) {
-        printError(i18n("Usage: miryu-grub-config-helper --apply <generated-config-file>"));
-        return 2;
-    }
-
-    if (::geteuid() != 0) {
-        printError(i18n("This helper must run as root through polkit."));
-        return 3;
-    }
-
-    bool ok = false;
-    const QString content = readTextFile(args.at(2), &ok);
-    if (!ok) {
-        printError(i18n("Could not read the generated configuration file."));
-        return 4;
-    }
+KAuth::ActionReply GrubConfigKAuthHelper::save(const QVariantMap &args)
+{
+    const QString content = args.value(QStringLiteral("content")).toString();
 
     ManagedSettings settings;
     QString error;
     if (!parseManagedSettings(content, &settings, &error)) {
-        printError(error);
-        return 5;
+        auto reply = KAuth::ActionReply::HelperErrorReply();
+        reply.setErrorDescription(error);
+        return reply;
     }
 
-    // 读取现有的 /etc/default/grub
+    // Read existing /etc/default/grub
     QString existingContent;
     bool grubExists = false;
     {
@@ -379,33 +362,37 @@ int main(int argc, char *argv[])
         grubExists = readOk && !existingContent.isEmpty();
     }
 
-    // 提取旧的内核参数，用于 grubby 差异更新
+    // Extract old cmdline for grubby diff update
     const QString oldCmdline = grubExists ? extractOldCmdline(existingContent) : QString();
 
-    // 将受托管设置合并到 /etc/default/grub
+    // Merge managed settings into /etc/default/grub
     const QString mergedContent = mergeIntoGrubFile(grubExists ? existingContent : QString(), settings);
 
     if (!writeGrubFile(mergedContent, &error)) {
-        printError(error);
-        return 6;
+        auto reply = KAuth::ActionReply::HelperErrorReply();
+        reply.setErrorDescription(error);
+        return reply;
     }
 
-    // 清理旧的 drop-in 文件（如果存在）
+    // Clean up old drop-in file if present
     removeOldDropin();
 
-    // 通过 grubby 更新 BLS 条目，使新内核参数立即生效
+    // Update BLS entries via grubby (non-fatal on failure)
     const QString newCmdline = settings.hasCmdline ? settings.cmdlineDefault : QString();
     if (!updateBlsEntries(oldCmdline, newCmdline, &error)) {
-        // 非致命错误，仅输出警告
-        printError(error);
+        // Non-fatal: continue to grub2-mkconfig
     }
 
-    // 重新生成 grub.cfg
+    // Regenerate grub.cfg
     if (!regenerateGrub(&error)) {
-        printError(error);
-        return 7;
+        auto reply = KAuth::ActionReply::HelperErrorReply();
+        reply.setErrorDescription(error);
+        return reply;
     }
 
-    QTextStream(stdout) << i18n("GRUB2 configuration updated.") << Qt::endl;
-    return 0;
+    auto reply = KAuth::ActionReply::SuccessReply();
+    reply.addData(QStringLiteral("message"), i18n("GRUB2 configuration updated."));
+    return reply;
 }
+
+KAUTH_HELPER_MAIN("org.miryugaming.grubconfig", GrubConfigKAuthHelper)

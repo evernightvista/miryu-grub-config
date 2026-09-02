@@ -20,13 +20,11 @@
     <message xml:lang="ja">GRUB2 設定を保存し、ブートローダー設定を再生成するには認証が必要です。</message>
     <message xml:lang="de">Zum Speichern der GRUB2-Einstellungen und zum Neuerstellen der Bootloader-Konfiguration ist eine Authentifizierung erforderlich.</message>
     <message xml:lang="ko">GRUB2 설정을 저장하고 부트로더 구성을 다시 생성하려면 인증이 필요합니다.</message>
-    <message xml:lang="fr">Une authentification est requise pour enregistrer les paramètres GRUB2 et régénérer la configuration du chargeur d’amorçage.</message>
+    <message xml:lang="fr">Une authentification est requise pour enregistrer les paramètres GRUB2 et régénérer la configuration du chargeur d'amorçage.</message>
     <defaults>
       <allow_any>auth_admin</allow_any>
       <allow_inactive>auth_admin</allow_inactive>
       <allow_active>auth_admin</allow_active>
     </defaults>
-    <annotate key="org.freedesktop.policykit.exec.path">@HELPER_INSTALL_PATH@</annotate>
-    <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
   </action>
 </policyconfig>

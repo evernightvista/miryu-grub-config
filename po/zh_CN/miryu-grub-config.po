@@ -73,8 +73,8 @@ msgstr "示例：nomodeset"
 msgid "Add"
 msgstr "添加"
 
-msgid "Saving requires administrator authentication through polkit."
-msgstr "保存需要通过 polkit 进行管理员身份验证。"
+msgid "Saving requires administrator authentication."
+msgstr "保存需要进行管理员身份验证。"
 
 msgid "Save GRUB2 Settings"
 msgstr "保存 GRUB2 设置"

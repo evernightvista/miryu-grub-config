@@ -9,7 +9,7 @@
 #include <unistd.h>
 
 #ifndef APP_ID
-#define APP_ID "org.miryu.grubconfig"
+#define APP_ID "org.miryugaming.grubconfig"
 #endif
 
 // 单实例 socket 名，按用户区分，避免多用户同时登录时冲突。
