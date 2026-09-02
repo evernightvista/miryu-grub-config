@@ -1,6 +1,6 @@
 Name:           miryu-grub-config
 Version:        45.0.0
-Release:        5%{?dist}
+Release:        3%{?dist}
 Summary:        KDE Plasma 6 GRUB2 configuration tool for Miryu
 
 License:        GPL-3.0-or-later
@@ -71,13 +71,11 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.miryugaming.grubc
 
 
 %changelog
-* Mon Sep 01 2026 Evernight Vista <13278297951@sina.cn> - 45.0.0-5
+* Tue Sep 01 2026 KairikiFedora <13278297951@sina.cn> - 45.0.0-3
 - Renamed the polkit action ID, D-Bus service name, and KAuth helper ID
   prefix from org.miryu.grubconfig to org.miryugaming.grubconfig.
 - Renamed all affected files (.actions, .conf, .service.in, .policy.in,
   .desktop) and updated all CMake, source, and spec references accordingly.
-
-* Mon Sep 01 2026 Evernight Vista <13278297951@sina.cn> - 45.0.0-4
 - Fixed the KCM Apply button icon override so the dialog-password (key)
   icon is reliably shown in both the dirty and disabled (greyed-out) states.
 - The icon search now covers QWindow instances (QQuickWindow / QQuickView)
@@ -92,8 +90,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.miryugaming.grubc
   initial discovery, then slow maintenance polling (2 s) that re-applies the
   icon when the framework resets it on enabled/disabled state changes.
 - The icon is also re-applied on changed(), load(), and save() callbacks.
-
-* Mon Sep 01 2026 Evernight Vista <13278297951@sina.cn> - 45.0.0-3
 - Replaced the synchronous pkexec save flow with an asynchronous KAuth
   helper so the UI no longer freezes during authentication or grub2-mkconfig.
 - The KAuth helper receives configuration content via QVariantMap arguments
